@@ -24,3 +24,38 @@ tsc --init
 
 yarn start
 ```
+
+
+## Project coding rules setup
+
+| Package  | Usage           |
+|----------|-----------------| 
+|Eslint    | Enforce rules   | 
+|Prettier  | Code formatter  |
+|Eslint-Config-Prettier  | format conflict resolver              |
+|Husky     | Pre-commit hook - for check Eslint + Prettier rules | 
+|Lint-stage| Only check staging file change for git commit       | 
+ 
+
+* yarn add -D eslint 
+* yarn add -D @typescript-eslint/parser 
+* yarn add -D @typescript-eslint/eslint-plugin
+* yarn add -D prettier
+* yarn add -D eslint-config-prettier
+* yarn add -D husky
+
+
+```
+.eslintrc
+.eslintignore
+.prettierrc
+```
+
+```js
+"scripts": {
+    "start": "ts-node-dev --respawn --transpile-only src/connection",
+    "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "lint:fix": "eslint --fix",
+    "prettier:check": "prettier --write ."
+},
+```
