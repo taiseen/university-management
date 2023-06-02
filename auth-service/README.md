@@ -31,15 +31,17 @@ yarn start
 | Package  | Usage           |
 |----------|-----------------| 
 |Eslint    | Enforce rules   | 
-|Prettier  | Code formatter  | 
+|Prettier  | Code formatter  |
+|Eslint-Config-Prettier  | format conflict resolver              |
 |Husky     | Pre-commit hook - for check Eslint + Prettier rules | 
-|Lint-stage| Only check staging file change for git commit | 
+|Lint-stage| Only check staging file change for git commit       | 
  
 
 * yarn add -D eslint 
 * yarn add -D @typescript-eslint/parser 
 * yarn add -D @typescript-eslint/eslint-plugin
 * yarn add -D prettier
+* yarn add -D eslint-config-prettier
 
 ```
 .eslintrc
