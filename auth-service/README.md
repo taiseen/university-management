@@ -42,6 +42,8 @@ yarn start
 * yarn add -D @typescript-eslint/eslint-plugin
 * yarn add -D prettier
 * yarn add -D eslint-config-prettier
+* yarn add -D husky
+
 
 ```
 .eslintrc
