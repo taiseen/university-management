@@ -69,8 +69,9 @@ nvm use 18.16.0 [run as administrator at cmd]
 "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/connection",
     "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint . --fix",
     "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prettier:fix": "prettier --write .",
     "lint-prettier": "yarn lint:check && yarn prettier:check"
 },
 "lint-staged": {
