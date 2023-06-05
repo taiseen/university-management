@@ -9,7 +9,7 @@ app.use(cors()); // use cors
 app.use(express.json()); // parsing data...
 app.use(express.urlencoded({ extended: true }));
 
-const userRoute = '/api/v1/users/';
+const userRoute = '/api/v1/users';
 
 app.use(userRoute, userRouter);
 
