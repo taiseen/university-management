@@ -1,11 +1,10 @@
-import express, { Request, Response } from 'express';
+import Controller from './Controller';
+import express from 'express';
 
 const router = express.Router();
 
 const createUserPath = '/create-user';
 
-router.post(createUserPath, (req: Request, res: Response) => {
-  return res.status(200);
-});
+router.post(createUserPath, Controller.newUserCreate);
 
 export default router;
