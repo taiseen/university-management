@@ -3,3 +3,6 @@
 /dist/
 
 .env
+
+*/**/successes/**/*.json
+*/**/errors/**/*.json
