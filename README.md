@@ -13,6 +13,8 @@
 - yarn add cors
 - yarn add mongoose
 - yarn add dotenv
+- yarn add winston `have "node module" incompatible issue`
+- yarn add winston-daily-rotate-file
 
 <br />
 
@@ -42,6 +44,7 @@ yarn start
 
 - yarn add -D eslint
 - yarn add -D @typescript-eslint/parser
+- yarn add -D @typescript-eslint/eslint-plugin
 - yarn add -D @typescript-eslint/eslint-plugin
 - yarn add -D prettier
 - yarn add -D eslint-config-prettier
