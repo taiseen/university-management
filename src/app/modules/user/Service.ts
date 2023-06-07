@@ -1,4 +1,5 @@
 // DataBase Logic...
+import ApiError from '../../../error/ApiError';
 import config from '../../../config';
 import { TUser } from './Interface';
 import { currentId } from './utils';
@@ -16,7 +17,7 @@ const createNewUser = async (user: TUser): Promise<TUser | null> => {
   const createNewUser = await User.create(user);
 
   if (!createNewUser) {
-    throw new Error('Failed to create a new user...');
+    throw new ApiError(400, 'Failed to create a new user...');
   }
 
   return createNewUser;

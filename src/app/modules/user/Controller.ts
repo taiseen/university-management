@@ -1,6 +1,5 @@
+import { NextFunction, Request, Response } from 'express';
 import Service from './Service';
-
-import { Request, Response } from 'express';
 
 const sendResponse = <T>(
   res: Response,
@@ -15,7 +14,11 @@ const sendResponse = <T>(
   });
 };
 
-const newUserCreate = async (req: Request, res: Response) => {
+const newUserCreate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { user } = req.body;
 
@@ -23,7 +26,8 @@ const newUserCreate = async (req: Request, res: Response) => {
 
     sendResponse(res, 200, 'User created successfully', result);
   } catch (error) {
-    sendResponse(res, 400, 'Failed to create new user');
+    // sendResponse(res, 400, 'Failed to create new user');
+    next(error);
   }
 };
 

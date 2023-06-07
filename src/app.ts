@@ -1,3 +1,4 @@
+import globalErrorHandler from './app/middleware/globalErrorHandler';
 import userRouter from './app/modules/user/Route';
 import express, { Application } from 'express';
 import welcome from './utils/welcome';
@@ -14,5 +15,8 @@ const userRoute = '/api/v1/users';
 app.use(userRoute, userRouter);
 
 app.get('/', welcome);
+
+// global error handling...
+app.use(globalErrorHandler);
 
 export default app;
