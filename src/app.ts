@@ -1,5 +1,5 @@
+import { userRoutes } from './app/modules/user/Route';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
-import userRouter from './app/modules/user/Route';
 import express, { Application } from 'express';
 import welcome from './utils/welcome';
 import cors from 'cors';
@@ -12,9 +12,15 @@ app.use(express.urlencoded({ extended: true }));
 
 const userRoute = '/api/v1/users';
 
-app.use(userRoute, userRouter);
+app.use(userRoute, userRoutes);
 
 app.get('/', welcome);
+
+// Error Testing...
+// app.get('/', (req, res) => {
+//   //   throw new Error('Hello Error......');
+//   //   throw new ApiError(400, 'ApiError Error......');
+// });
 
 // global error handling...
 app.use(globalErrorHandler);
