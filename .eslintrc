@@ -9,7 +9,7 @@
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
 
   "rules": {
-    // "no-undef":"error",
+    "no-undef":"error",
     "no-console":"error",
     "no-unreachable":"error",
     "no-unused-vars": "error",
@@ -19,6 +19,10 @@
 
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
+  },
+  "globals": {
+    "process": true
   }
 }
