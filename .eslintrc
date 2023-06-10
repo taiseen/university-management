@@ -10,7 +10,7 @@
 
   "rules": {
     "no-undef":"error",
-    "no-console":"error",
+    "no-console":"warn",
     "no-unreachable":"error",
     "no-unused-vars": "error",
     "no-unused-expressions":"error",
