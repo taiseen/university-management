@@ -20,7 +20,7 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 });
 
 // 🟩🟩🟩 for success log 🟩🟩🟩
-const successLog = createLogger({
+const logger = createLogger({
   level: 'info',
   format: combine(label({ label: 'PH' }), timestamp(), myFormat), // prettyPrint()
   transports: [
@@ -63,4 +63,4 @@ const errorLog = createLogger({
   ],
 });
 
-export { successLog, errorLog };
+export { logger, errorLog };

@@ -22,6 +22,17 @@ app.get('/', welcome);
 //   //   throw new ApiError(400, 'ApiError Error......');
 // });
 
+// // async error
+// app.get('/', async (req, res, next) => {
+//   Promise.reject(new Error('Unhandled Promise Rejection'));
+// });
+
+// // sync error
+// app.get('/', (req, res, next) => {
+//   // console.log(x);
+//   throw new Error('Testing error logger...');
+// });
+
 // global error handling...
 app.use(globalErrorHandler);
 
