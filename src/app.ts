@@ -1,3 +1,4 @@
+import { academicSemesterRoutes } from './app/modules/academicSemester/route';
 import { userRoutes } from './app/modules/user/Route';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import express, { Application } from 'express';
@@ -10,9 +11,13 @@ app.use(cors()); // use cors
 app.use(express.json()); // parsing data...
 app.use(express.urlencoded({ extended: true }));
 
-const userRoute = '/api/v1/users';
+const api = {
+  userRoute: '/api/v1/users',
+  semesterRoute: '/api/v1/academic-semesters',
+};
 
-app.use(userRoute, userRoutes);
+app.use(api.userRoute, userRoutes);
+app.use(api.semesterRoute, academicSemesterRoutes);
 
 app.get('/', welcome);
 
