@@ -1,18 +1,28 @@
-import { sendResponse } from '../sendResponse';
-import { RequestHandler } from 'express';
+import { sendResponse } from '../../../shared/sendResponse';
+import { NextFunction, Request, Response } from 'express';
 import { userService } from './Service';
+import catchAsync from '../../../shared/catchAsync';
+import httpStatus from 'http-status';
 
-const newUserCreate: RequestHandler = async (req, res, next) => {
-  try {
+// Higher Order Function (HOF) - use here... for reduce code duplication
+const newUserCreate = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
     const { user } = req.body;
 
     const result = await userService.createNewUser(user);
 
-    sendResponse(res, 200, 'User created successfully ✅', result);
-  } catch (error) {
-    next(error);
+    const responseData = {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'User created successfully ✅',
+      data: result,
+    };
+
+    sendResponse(res, responseData);
+
+    next();
   }
-};
+);
 
 export const userController = {
   newUserCreate,

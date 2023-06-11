@@ -30,3 +30,11 @@ export const academicSemesterMonths: TAcademicSemesterMonths[] = [
   'November',
   'December',
 ];
+
+export const academicSemesterTitleMapper: {
+  [key: string]: string;
+} = {
+  Autumn: '01',
+  Summer: '02',
+  Fall: '03',
+};

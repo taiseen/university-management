@@ -1,20 +1,30 @@
+import { sendResponse } from '../../../shared/sendResponse';
+import { Request, Response, NextFunction } from 'express';
 import { AcademicSemesterService } from './service';
-import { sendResponse } from '../sendResponse';
-import { RequestHandler } from 'express';
+import catchAsync from '../../../shared/catchAsync';
+import httpStatus from 'http-status';
 
-const newSemesterCreate: RequestHandler = async (req, res, next) => {
-  try {
+// Higher Order Function (HOF) - use here... for reduce code duplication
+const newSemesterCreate = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
     const { ...academicSemesterData } = req.body;
 
     const result = await AcademicSemesterService.createSemester(
       academicSemesterData
     );
 
-    sendResponse(res, 200, 'Academic semester created successfully', result);
-  } catch (error) {
-    next(error);
+    const responseData = {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic semester created successfully',
+      data: result,
+    };
+
+    sendResponse(res, responseData);
+
+    next();
   }
-};
+);
 
 export const academicSemesterController = {
   newSemesterCreate,
