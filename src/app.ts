@@ -1,8 +1,8 @@
-import { academicSemesterRoutes } from './app/modules/academicSemester/route';
-import { userRoutes } from './app/modules/user/Route';
 import globalErrorHandler from './app/middleware/globalErrorHandler';
+import routeNotFound from './utils/routeNotFound';
 import express, { Application } from 'express';
 import welcome from './utils/welcome';
+import router from './app/routes';
 import cors from 'cors';
 
 const app: Application = express();
@@ -11,34 +11,12 @@ app.use(cors()); // use cors
 app.use(express.json()); // parsing data...
 app.use(express.urlencoded({ extended: true }));
 
-const api = {
-  userRoute: '/api/v1/users',
-  semesterRoute: '/api/v1/academic-semesters',
-};
+app.use('/api/v1/', router); // all routes present here...
 
-app.use(api.userRoute, userRoutes);
-app.use(api.semesterRoute, academicSemesterRoutes);
+app.use(globalErrorHandler); // global error handling...
 
-app.get('/', welcome);
+app.get('/', welcome); // welcome info display
 
-// Error Testing...
-// app.get('/', (req, res) => {
-//   //   throw new Error('Hello Error......');
-//   //   throw new ApiError(400, 'ApiError Error......');
-// });
-
-// // async error
-// app.get('/', async (req, res, next) => {
-//   Promise.reject(new Error('Unhandled Promise Rejection'));
-// });
-
-// // sync error
-// app.get('/', (req, res, next) => {
-//   // console.log(x);
-//   throw new Error('Testing error logger...');
-// });
-
-// global error handling...
-app.use(globalErrorHandler);
+app.use('/', routeNotFound); // route not found | 404 | for CRUD operation
 
 export default app;
