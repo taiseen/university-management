@@ -6,6 +6,7 @@ export const sendResponse = <T>(res: Response, data: TResponseData<T>) => {
     statusCode: data.statusCode,
     success: data.success,
     message: data.message || null,
+    meta: data.meta,
     data: data.data || null,
   };
 
