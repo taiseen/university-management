@@ -7,6 +7,7 @@ const router = express.Router();
 
 const path = {
   createSemester: '/create-semester',
+  allSemester: '/all-semester',
 };
 
 router.post(
@@ -14,5 +15,7 @@ router.post(
   validationRequest(academicSemesterValidation.createAcademicSemesterZodSchema),
   academicSemesterController.newSemesterCreate
 );
+
+router.get(path.allSemester, academicSemesterController.getAllSemester);
 
 export const academicSemesterRoutes = router;

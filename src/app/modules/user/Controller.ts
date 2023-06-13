@@ -1,6 +1,7 @@
 import { sendResponse } from '../../../shared/sendResponse';
 import { NextFunction, Request, Response } from 'express';
 import { userService } from './Service';
+import { TUser } from './Interface';
 import catchAsync from '../../../shared/catchAsync';
 import httpStatus from 'http-status';
 
@@ -18,7 +19,7 @@ const newUserCreate = catchAsync(
       data: result,
     };
 
-    sendResponse(res, responseData);
+    sendResponse<TUser>(res, responseData);
 
     next();
   }
