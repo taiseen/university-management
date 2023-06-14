@@ -1,7 +1,7 @@
-import { SortOrder } from 'mongoose';
 import { TGenericErrorMessage } from './error';
+import { SortOrder } from 'mongoose';
 
-export type TGenericErrorResponse = {
+export type TGenericErrorRes = {
   statusCode: number;
   message: string;
   errorMessages: TGenericErrorMessage[];
@@ -17,7 +17,7 @@ export type TResponseData<T> = {
   success: boolean;
   statusCode: number;
   message?: string | null;
-  meta?: TPaginationResponse;
+  meta?: TPaginationRes;
   data?: T | null;
 };
 
@@ -28,10 +28,10 @@ export type TPagination = {
   sortOrder?: 'asc' | 'desc';
 };
 
-type TPaginationResponse = { page: number; limit: number; total: number };
+type TPaginationRes = { page: number; limit: number; total: number };
 
-export type TGenericResponse<T> = {
-  meta: TPaginationResponse;
+export type TGenericRes<T> = {
+  meta: TPaginationRes;
   data: T;
 };
 

@@ -1,21 +1,21 @@
-import { TAcademicSemesterModel, TAcademicSemester } from './interface';
+import { aS_Codes, aS_Months, aS_Titles } from './constants';
+import { TAS_Model, TAS } from './interface';
 import { Schema, model } from 'mongoose';
-import {
-  academicSemesterCodes,
-  academicSemesterMonths,
-  academicSemesterTitles,
-} from './constants';
 import ApiError from '../../../error/ApiError';
 import httpStatus from 'http-status';
 
-// Create a new Schema
-const academicSemesterSchema = new Schema<TAcademicSemester>(
+// 🟨🟨🟨🟨🟨🟨🟨🟨🟨
+// academicSemester == aS
+// 🟨🟨🟨🟨🟨🟨🟨🟨🟨
+
+// 🟢🟢🟢 Create a new Schema 🟢🟢🟢
+const aS_Schema = new Schema<TAS>(
   {
-    title: { type: String, required: true, enum: academicSemesterTitles },
-    year: { type: Number, required: true },
-    code: { type: String, required: true, enum: academicSemesterCodes },
-    startMonth: { type: String, required: true, enum: academicSemesterMonths },
-    endMonth: { type: String, required: true, enum: academicSemesterMonths },
+    title: { type: String, required: true, enum: aS_Titles },
+    year: { type: String, required: true },
+    code: { type: String, required: true, enum: aS_Codes },
+    startMonth: { type: String, required: true, enum: aS_Months },
+    endMonth: { type: String, required: true, enum: aS_Months },
   },
   { timestamps: true }
 );
@@ -24,8 +24,8 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
 // & this kind of hook always use before - [Model]
 
 // using hook for data checking, before save in DB
-academicSemesterSchema.pre('save', async function (next) {
-  const isExist = await AcademicSemesterModel.findOne({
+aS_Schema.pre('save', async function (next) {
+  const isExist = await aS_Model.findOne({
     title: this.title,
     year: this.year,
   });
@@ -40,7 +40,4 @@ academicSemesterSchema.pre('save', async function (next) {
   next(); // mongoose provide this --> next() callback function
 });
 
-export const AcademicSemesterModel = model<
-  TAcademicSemester,
-  TAcademicSemesterModel
->('AcademicSemester', academicSemesterSchema);
+export const aS_Model = model<TAS, TAS_Model>('AcademicSemester', aS_Schema);
