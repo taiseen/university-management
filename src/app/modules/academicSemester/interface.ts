@@ -1,6 +1,11 @@
 import { Model } from 'mongoose';
 
-export type TAcademicSemesterMonths =
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+// Type == T
+// Academic Semester == AS
+// 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+
+export type TAS_Months =
   | 'January'
   | 'February'
   | 'March'
@@ -14,16 +19,20 @@ export type TAcademicSemesterMonths =
   | 'November'
   | 'December';
 
-export type TAcademicSemesterTitles = 'Autumn' | 'Summer' | 'Fall';
-export type TAcademicSemesterCodes = '01' | '02' | '03';
+export type TAS_Titles = 'Autumn' | 'Summer' | 'Fall';
+export type TAS_Codes = '01' | '02' | '03';
 
-export type TAcademicSemester = {
-  title: TAcademicSemesterTitles;
-  year: number;
-  code: TAcademicSemesterCodes;
-  startMonth: TAcademicSemesterMonths;
-  endMonth: TAcademicSemesterMonths;
+export type TAS = {
+  title: TAS_Titles;
+  year: string;
+  code: TAS_Codes;
+  startMonth: TAS_Months;
+  endMonth: TAS_Months;
 };
 
-// Create a new Model
-export type TAcademicSemesterModel = Model<TAcademicSemester>;
+// 🟢🟢🟢 Create a new Model 🟢🟢🟢
+export type TAS_Model = Model<TAS>;
+
+export type TAS_Filter = {
+  searchTerm: string;
+};

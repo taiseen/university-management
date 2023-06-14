@@ -3,6 +3,7 @@ import { TGenericErrorMessage } from '../../interfaces/error';
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import handleValidationError from '../../error/handleValidationError';
+import handleCastError from '../../error/handleCastError';
 import handleZodError from '../../error/handleZodError';
 import ApiError from '../../error/ApiError';
 import config from '../../config';
@@ -23,6 +24,12 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessage = simplifyError.errorMessages;
   } else if (error instanceof ZodError) {
     const simplifyError = handleZodError(error);
+    statusCode = simplifyError.statusCode;
+    message = simplifyError.message;
+    errorMessage = simplifyError.errorMessages;
+  } else if (error.name === 'CastError') {
+    // res.status(200).json({ error });
+    const simplifyError = handleCastError(error);
     statusCode = simplifyError.statusCode;
     message = simplifyError.message;
     errorMessage = simplifyError.errorMessages;
