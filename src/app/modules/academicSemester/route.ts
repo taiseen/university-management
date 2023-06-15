@@ -33,4 +33,4 @@ router.get(path.singleSemester, aS_Controller.getSingleSemester);
 
 router.get(path.allSemester, aS_Controller.getAllSemester);
 
-export const academicSemesterRoutes = router;
+export const aS_Routes = router;
