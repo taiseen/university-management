@@ -6,7 +6,9 @@ import { aS_Controller } from './controller';
 const router = express.Router();
 
 const path = {
-  createSemester: '/create-semester',
+  createSemester: '/',
+  updateSemester: '/:id',
+  deleteSemester: '/:id',
   singleSemester: '/:id',
   allSemester: '/',
 };
@@ -16,6 +18,16 @@ router.post(
   validationRequest(aS_Validation.create_AS_ZodSchema),
   aS_Controller.newSemesterCreate
 );
+
+// this router operation orders are very important...
+
+router.patch(
+  path.updateSemester,
+  validationRequest(aS_Validation.update_AS_ZodSchema),
+  aS_Controller.updateSemester
+);
+
+router.delete(path.deleteSemester, aS_Controller.deleteSemester);
 
 router.get(path.singleSemester, aS_Controller.getSingleSemester);
 

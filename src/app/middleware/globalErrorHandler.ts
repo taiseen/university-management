@@ -8,7 +8,7 @@ import handleZodError from '../../error/handleZodError';
 import ApiError from '../../error/ApiError';
 import config from '../../config';
 
-const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
+const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
   // config.env === 'development'
   //   ? console.log('globalErrorHandler ==>', error)
   //   : errorLog.error('globalErrorHandler ==>', error);
@@ -63,8 +63,6 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessage,
     stack: config.env === 'development' ? error.stack : undefined,
   });
-
-  next();
 };
 
 export default globalErrorHandler;
