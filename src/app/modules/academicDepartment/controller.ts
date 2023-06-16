@@ -1,16 +1,16 @@
 import { sendResponse } from '../../../shared/sendResponse';
 import { paginationFields } from '../../../constants';
-import { aF_FilterableFields } from './constants';
+import { aD_FilterableFields } from './constants';
 import { Request, Response } from 'express';
-import { aF_Service } from './service';
-import { TAF } from './interface';
+import { aD_Service } from './service';
+import { TAD } from './interface';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import httpStatus from 'http-status';
 
-// 🟨🟨🟨🟨🟨🟨🟨🟨🟨
-// academicFaculty == aF
-// 🟨🟨🟨🟨🟨🟨🟨🟨🟨
+// 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+// academicDepartment == aD
+// 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
@@ -18,35 +18,35 @@ import httpStatus from 'http-status';
 
 // Higher Order Function (HOF) - use here... for reduce code duplication
 
-const createFaculty = catchAsync(async (req: Request, res: Response) => {
-  const { ...aF_Data } = req.body;
+const createDepartment = catchAsync(async (req: Request, res: Response) => {
+  const { ...aD_Data } = req.body;
 
-  const result = await aF_Service.createFaculty(aF_Data);
+  const result = await aD_Service.createDepartment(aD_Data);
 
   const responseData = {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty created successfully',
+    message: 'Department created successfully',
     data: result,
   };
 
-  sendResponse<TAF>(res, responseData);
+  sendResponse<TAD>(res, responseData);
 });
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, aF_FilterableFields);
+const getAllDepartment = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, aD_FilterableFields);
 
   const paginationOptions = pick(req.query, paginationFields);
 
-  const result = await aF_Service.getAllFaculty(filters, paginationOptions);
+  const result = await aD_Service.getAllDepartment(filters, paginationOptions);
 
-  sendResponse<TAF[]>(res, {
+  sendResponse<TAD[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'All Faculties retrieved successfully',
+    message: 'All Department retrieved successfully',
     meta: result.meta,
     data: result.data,
   });
@@ -55,15 +55,15 @@ const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
+const getSingleDepartment = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const result = await aF_Service.getSingleFaculty(id);
+  const result = await aD_Service.getSingleDepartment(id);
 
-  sendResponse<TAF>(res, {
+  sendResponse<TAD>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Selected Faculty retrieved successfully',
+    message: 'Selected Department retrieved successfully',
     data: result,
   });
 });
@@ -71,44 +71,44 @@ const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-const updateFaculty = catchAsync(async (req: Request, res: Response) => {
+const updateDepartment = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updateData = req.body;
 
-  const result = await aF_Service.updateFaculty(id, updateData);
+  const result = await aD_Service.updateDepartment(id, updateData);
 
   const responseData = {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty updated successfully',
+    message: 'Department updated successfully',
     data: result,
   };
 
-  sendResponse<TAF>(res, responseData);
+  sendResponse<TAD>(res, responseData);
 });
 
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-const deleteFaculty = catchAsync(async (req: Request, res: Response) => {
+const deleteDepartment = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  const result = await aF_Service.deleteFaculty(id);
+  const result = await aD_Service.deleteDepartment(id);
 
   const responseData = {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty delete successfully',
+    message: 'Department delete successfully',
     data: result,
   };
 
-  sendResponse<TAF>(res, responseData);
+  sendResponse<TAD>(res, responseData);
 });
 
-export const aF_Controller = {
-  createFaculty,
-  getAllFaculty,
-  getSingleFaculty,
-  updateFaculty,
-  deleteFaculty,
+export const aD_Controller = {
+  createDepartment,
+  getAllDepartment,
+  getSingleDepartment,
+  updateDepartment,
+  deleteDepartment,
 };

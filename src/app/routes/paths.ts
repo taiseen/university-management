@@ -1,3 +1,4 @@
+import { aD_Routes } from '../modules/academicDepartment/route';
 import { aS_Routes } from '../modules/academicSemester/route';
 import { aF_Routes } from '../modules/academicFaculty/route';
 import { userRoutes } from '../modules/user/Route';
@@ -14,6 +15,10 @@ const apiRoutes = [
   {
     path: '/academic-faculty',
     route: aF_Routes,
+  },
+  {
+    path: '/academic-department',
+    route: aD_Routes,
   },
 ];
 
