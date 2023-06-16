@@ -1,5 +1,5 @@
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩
-// academicFaculty == aS
+// academicFaculty == aF
 // 🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
 export const aF_FilterableFields: string[] = ['searchTerm', 'title'];

@@ -17,7 +17,7 @@ const aS_Schema = new Schema<TAS>(
     startMonth: { type: String, required: true, enum: aS_Months },
     endMonth: { type: String, required: true, enum: aS_Months },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true } }
 );
 
 // this kind of common data checking perform inside - [Schema]
