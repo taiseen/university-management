@@ -8,7 +8,8 @@ import handleZodError from '../../error/handleZodError';
 import ApiError from '../../error/ApiError';
 import config from '../../config';
 
-const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   // config.env === 'development'
   //   ? console.log('globalErrorHandler ==>', error)
   //   : errorLog.error('globalErrorHandler ==>', error);
@@ -63,6 +64,8 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
     errorMessage,
     stack: config.env === 'development' ? error.stack : undefined,
   });
+
+  // next();
 };
 
 export default globalErrorHandler;
