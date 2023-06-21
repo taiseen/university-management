@@ -1,6 +1,7 @@
+import { TAS } from '../academicSemester/interface';
 import { User } from './Model';
 
-const findLastUserId = async () => {
+const findLastStudentId = async () => {
   const lastUserId = await User.findOne({}, { id: 1, _id: 0 })
     .sort({
       createdAt: -1,
@@ -9,11 +10,17 @@ const findLastUserId = async () => {
   return lastUserId?.id;
 };
 
-export const currentId = async () => {
+export const generateStudentId = async (academicSemester: TAS) => {
+  const { year, code } = academicSemester;
+
   // create new user id || find existing user id...
-  const currentId = (await findLastUserId()) || (0).toString().padStart(5, '0');
+  const currentId =
+    (await findLastStudentId()) || (0).toString().padStart(5, '0');
 
   // increment id by 1
-  const incrementalId = (+currentId + 1).toString().padStart(5, '0');
+  let incrementalId = (+currentId + 1).toString().padStart(5, '0');
+
+  incrementalId = `${year.substring(2)}${code}${incrementalId}`;
+
   return incrementalId;
 };
