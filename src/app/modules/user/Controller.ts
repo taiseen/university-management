@@ -7,9 +7,9 @@ import httpStatus from 'http-status';
 
 // Higher Order Function (HOF) - use here... for reduce code duplication
 const newUserCreate = catchAsync(async (req: Request, res: Response) => {
-  const { user } = req.body;
+  const { ...userData } = req.body;
 
-  const result = await userService.createNewUser(user);
+  const result = await userService.createNewUser(userData);
 
   const responseData = {
     statusCode: httpStatus.OK,
