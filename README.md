@@ -89,3 +89,13 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 ```
 
 [link]: https://typicode.github.io/husky/getting-started.html
+
+## Project Sections:-
+
+- user
+  - student
+  - admin
+  - faculty
+- academy semester
+- academy department
+- academy faculty
