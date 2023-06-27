@@ -99,3 +99,4 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 - academy semester
 - academy department
 - academy faculty
+- user auth login
