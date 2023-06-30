@@ -100,4 +100,3 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 - academy department
 - academy faculty
 - user auth login
-- user zod validation
