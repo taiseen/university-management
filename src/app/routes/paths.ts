@@ -1,7 +1,7 @@
 import { aD_Routes } from '../modules/academicDepartment/route';
 import { aS_Routes } from '../modules/academicSemester/route';
 import { aF_Routes } from '../modules/academicFaculty/route';
-import { userRoutes } from '../modules/user/Route';
+import { userRoutes } from '../modules/user/route';
 
 const apiRoutes = [
   {

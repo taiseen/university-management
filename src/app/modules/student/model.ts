@@ -1,22 +1,24 @@
-import { Schema, model } from 'mongoose';
-import { TStudent, studentModel } from './interface';
+import { TStudent, TStudentModel } from './interface';
 import { bloodGroup, gender } from './constants';
+import { Schema, model } from 'mongoose';
 
-export const studentSchema = new Schema<TStudent, studentModel>(
+export const studentSchema = new Schema<TStudent, TStudentModel>(
   {
     id: { type: String, required: true, unique: true },
 
     name: {
       type: {
         firstName: { type: String, required: true },
-        middleName: { type: String, required: true },
+        middleName: { type: String },
         lastName: { type: String, required: true },
       },
     },
 
     dateOfBirth: { type: String, required: true },
+
     gender: { type: String, enum: gender, required: true },
     bloodGroup: { type: String, enum: bloodGroup },
+
     email: { type: String, required: true, unique: true },
     contactNo: { type: String, required: true, unique: true },
     emergencyContactNo: { type: String, required: true },
@@ -69,7 +71,7 @@ export const studentSchema = new Schema<TStudent, studentModel>(
   { timestamps: true, toJSON: { virtuals: true } } // for getting normal id
 );
 
-export const studentModel = model<TStudent, studentModel>(
+export const studentModel = model<TStudent, TStudentModel>(
   'Student',
   studentSchema
 );
