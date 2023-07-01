@@ -1,8 +1,9 @@
 import { TAS } from '../academicSemester/interface';
-import { User } from './Model';
+import { userModel } from './model';
 
 const findLastStudentId = async (): Promise<string | undefined> => {
-  const lastUserId = await User.findOne({ role: 'student' }, { id: 1, _id: 0 })
+  const lastUserId = await userModel
+    .findOne({ role: 'student' }, { id: 1, _id: 0 })
     .sort({
       createdAt: -1,
     })
@@ -29,7 +30,8 @@ export const generateStudentId = async (
 };
 
 const findLastFacultyId = async (): Promise<string | undefined> => {
-  const lastFaculty = await User.findOne({ role: 'faculty' }, { id: 1, _id: 0 })
+  const lastFaculty = await userModel
+    .findOne({ role: 'faculty' }, { id: 1, _id: 0 })
     .sort({
       createdAt: -1,
     })

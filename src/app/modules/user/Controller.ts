@@ -1,20 +1,20 @@
 import { sendResponse } from '../../../shared/sendResponse';
 import { Request, Response } from 'express';
-import { userService } from './Service';
-import { TUser } from './Interface';
+import { userService } from './service';
+import { TUser } from './interface';
 import catchAsync from '../../../shared/catchAsync';
 import httpStatus from 'http-status';
 
 // Higher Order Function (HOF) - use here... for reduce code duplication
-const newUserCreate = catchAsync(async (req: Request, res: Response) => {
-  const { ...userData } = req.body;
+const createStudent = catchAsync(async (req: Request, res: Response) => {
+  const { student, ...userData } = req.body;
 
-  const result = await userService.createNewUser(userData);
+  const result = await userService.createStudent(student, userData);
 
   const responseData = {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User created successfully ✅',
+    message: 'Student - created successfully ✅',
     data: result,
   };
 
@@ -22,5 +22,5 @@ const newUserCreate = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const userController = {
-  newUserCreate,
+  createStudent,
 };

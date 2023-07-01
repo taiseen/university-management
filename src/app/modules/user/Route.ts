@@ -1,16 +1,16 @@
 import validationRequest from '../../middleware/validateRequest';
 import express from 'express';
-import { userController } from './Controller';
+import { userController } from './controller';
 import { userValidation } from './validation';
 
 const router = express.Router();
 
-const createUserPath = '/create-user';
+const createUserPath = '/create-student';
 
 router.post(
   createUserPath,
   validationRequest(userValidation.userCreateZodSchema),
-  userController.newUserCreate
+  userController.createStudent
 );
 
 export const userRoutes = router;
