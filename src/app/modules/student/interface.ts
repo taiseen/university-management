@@ -41,21 +41,34 @@ export type TLocalGuardian = {
 // student interface created - by - student schema types...
 export type TStudent = {
   id: string;
-  name: TUserName;
-  dateOfBirth: string;
-  gender: TGender;
-  bloodGroup: TBloodGroup;
+  name: TUserName; // embedded object
+
+  gender: TGender; // literals values
+  bloodGroup: TBloodGroup; // literals values
+
   email: string;
+  dateOfBirth: string;
   contactNo: string;
   emergencyContactNo: string;
   presentAddress: string;
   permanentAddress: string;
-  guardian: TGuardian;
-  localGuardian: TLocalGuardian;
   profileImg: string;
-  academicFaculty: Types.ObjectId | TAF;
-  academicDepartment: Types.ObjectId | TAD;
-  academicSemester: Types.ObjectId | TAS;
+
+  guardian: TGuardian; // embedded object
+  localGuardian: TLocalGuardian; // embedded object
+
+  academicFaculty: Types.ObjectId | TAF; // reference
+  academicDepartment: Types.ObjectId | TAD; // reference
+  academicSemester: Types.ObjectId | TAS; // reference
 };
 
 export type TStudentModel = Model<TStudent, Record<string, unknown>>;
+
+export type TStudentFilter = {
+  searchTerm?: string;
+  id?: string;
+  email?: string;
+  contactNo?: string;
+  bloodGroup?: string;
+  emergencyContactNo?: string;
+};

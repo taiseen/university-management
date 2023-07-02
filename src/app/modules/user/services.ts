@@ -6,7 +6,7 @@ import { TStudent } from '../student/interface';
 import { studentModel } from '../student/model';
 import { generateStudentId } from './utils';
 import { TUser } from './interface';
-import { userModel } from './model';
+import { userModel } from './models';
 import ApiError from '../../../error/ApiError';
 import config from '../../../config';
 import httpStatus from 'http-status';
