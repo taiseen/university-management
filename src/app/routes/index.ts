@@ -1,4 +1,4 @@
-import apiRoutes from './paths';
+import apiRoutes from './routes';
 import express from 'express';
 
 const router = express.Router();
