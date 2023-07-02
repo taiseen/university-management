@@ -35,7 +35,5 @@ export const aS_SearchableFields: string[] = ['title', 'code', 'year'];
 
 export const aS_FilterableFields: string[] = [
   'searchTerm',
-  'title',
-  'code',
-  'year',
+  ...aS_SearchableFields,
 ];

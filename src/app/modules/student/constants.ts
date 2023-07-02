@@ -11,3 +11,19 @@ export const bloodGroup: TBloodGroup[] = [
   'O+',
   'O-',
 ];
+
+export const studentSearchableFields: string[] = [
+  'id',
+  'email',
+  'contactNo',
+  'bloodGroup',
+  'emergencyContactNo',
+  'name.firstName',
+  'name.middleName',
+  'name.lastName',
+];
+
+export const studentFilterableFields: string[] = [
+  'searchTerm',
+  ...studentSearchableFields,
+];
