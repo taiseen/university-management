@@ -1,12 +1,13 @@
-import { Model, Types } from 'mongoose';
+import { TFaculty } from '../faculty/interface';
 import { TStudent } from '../student/interface';
+import { Model, Types } from 'mongoose';
 
 export type TUser = {
   id: string;
   role: string;
   password: string;
   student?: Types.ObjectId | TStudent;
-  // faculty?: Types.ObjectId | TAF;
+  faculty?: Types.ObjectId | TFaculty;
   // admin?: Types.ObjectId | TAdmin;
 };
 
