@@ -1,5 +1,5 @@
 import { TAS } from '../academicSemester/interface';
-import { userModel } from './models';
+import { userModel } from './model';
 
 const findLastStudentId = async (): Promise<string | undefined> => {
   const lastUserId = await userModel
