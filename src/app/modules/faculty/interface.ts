@@ -27,7 +27,7 @@ export type TFaculty = {
   designation: string;
 };
 
-export type facultyModel = Model<TFaculty, Record<string, unknown>>;
+export type TFacultyModel = Model<TFaculty, Record<string, unknown>>;
 
 export type TFacultyFilters = {
   searchTerm?: string;
