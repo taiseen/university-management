@@ -1,4 +1,4 @@
-import { TUser, TUserModel } from './interfaces';
+import { TUser, TUserModel } from './interface';
 import { Schema, model } from 'mongoose';
 
 // Create a new Schema

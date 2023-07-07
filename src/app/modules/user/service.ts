@@ -7,7 +7,7 @@ import { studentModel } from '../student/model';
 import { TFaculty } from '../faculty/interface';
 import { facultyModel } from '../faculty/model';
 import { generateStudentId } from './utils';
-import { TUser } from './interfaces';
+import { TUser } from './interface';
 import { userModel } from './model';
 import ApiError from '../../../error/ApiError';
 import config from '../../../config';
