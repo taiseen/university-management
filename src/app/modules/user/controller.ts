@@ -1,7 +1,7 @@
 import { sendResponse } from '../../../shared/sendResponse';
 import { Request, RequestHandler, Response } from 'express';
 import { userService } from './service';
-import { TUser } from './interfaces';
+import { TUser } from './interface';
 import catchAsync from '../../../shared/catchAsync';
 import httpStatus from 'http-status';
 
