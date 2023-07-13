@@ -6,6 +6,8 @@ export type TUser = {
   id: string;
   role: string;
   password: string;
+  needsPasswordChange: boolean;
+  // passwordChangedAt?: Date;
   student?: Types.ObjectId | TStudent;
   faculty?: Types.ObjectId | TFaculty;
   // admin?: Types.ObjectId | TAdmin;

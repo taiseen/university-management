@@ -8,3 +8,5 @@
 
 */**/successes/**/*.json
 */**/errors/**/*.json
+
+/src/app/modules/auth/*.ts
