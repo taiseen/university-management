@@ -10,9 +10,9 @@ export default {
 
   defaultStudentPass: process.env.DEFAULT_STUDENT_PASS,
   defaultFacultyPass: process.env.DEFAULT_FACULTY_PASS,
-  // defaultAdminPass: process.env.DEFAULT_ADMIN_PASS,
+  defaultAdminPass: process.env.DEFAULT_ADMIN_PASS,
 
-  // bycryptSaltRounds: process.env.BCRYPT_SALT_ROUNDS,
+  bycryptSaltRounds: process.env.BCRYPT_SALT_ROUNDS,
 
   // jwt: {
   //   secret: process.env.JWT_SECRET,

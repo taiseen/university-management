@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 import { TUser, TUserModel } from './interface';
 import { Schema, model } from 'mongoose';
+import config from '../../../config';
 import bcrypt from 'bcrypt';
 
 // Create a new Schema
@@ -34,5 +36,23 @@ userSchema.statics.isPasswordMatched = async function (
 ): Promise<boolean> {
   return await bcrypt.compare(givenPassword, savedPassword);
 };
+
+// common for all user creation...
+userSchema.pre('save', async function (next) {
+  // hashing user password
+
+  const user = this;
+
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bycryptSaltRounds)
+  );
+
+  // if (!user.needsPasswordChange) {
+  //   user.passwordChangedAt = new Date();
+  // }
+
+  next();
+});
 
 export const userModel = model<TUser, TUserModel>('User', userSchema);

@@ -1,3 +1,4 @@
+import { mD_Routes } from '../modules/managementDepartment/routes';
 import { aD_Routes } from '../modules/academicDepartment/routes';
 import { aS_Routes } from '../modules/academicSemester/routes';
 import { aF_Routes } from '../modules/academicFaculty/routes';
@@ -18,6 +19,10 @@ const apiRoutes = [
   {
     path: '/academic-department',
     route: aD_Routes,
+  },
+  {
+    path: '/management-departments',
+    route: mD_Routes,
   },
   {
     path: '/users',

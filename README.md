@@ -19,6 +19,7 @@
 - yarn add winston-daily-rotate-file
 - yarn add zod `have "node module" incompatible issue`
 - yarn add http-status
+- yarn add bcrypt
 
 <br />
 
