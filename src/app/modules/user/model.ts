@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
 import { TUser, TUserModel } from './interface';
 import { Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt';
 import config from '../../../config';
+import bcrypt from 'bcrypt';
 
 // Create a new Schema
 const userSchema = new Schema<TUser>(
@@ -18,6 +18,24 @@ const userSchema = new Schema<TUser>(
   },
   { timestamps: true, toJSON: { virtuals: true } } // for getting normal id
 );
+
+// 🔍🔍🔍 checking that user exist or not 🔍🔍🔍
+userSchema.statics.isUserExist = async function (
+  id: string
+): Promise<TUser | null> {
+  return await userModel.findOne(
+    { id },
+    { id: 1, password: 1, role: 1, needsPasswordChange: 1 }
+  );
+};
+
+// 🔍🔍🔍 checking user given password match or not 🔍🔍🔍
+userSchema.statics.isPasswordMatched = async function (
+  givenPassword: string,
+  savedPassword: string
+): Promise<boolean> {
+  return await bcrypt.compare(givenPassword, savedPassword);
+};
 
 // common for all user creation...
 userSchema.pre('save', async function (next) {

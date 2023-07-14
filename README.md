@@ -14,6 +14,7 @@
 - yarn add cors
 - yarn add mongoose
 - yarn add dotenv
+- yarn add bcrypt
 - yarn add winston `have "node module" incompatible issue`
 - yarn add winston-daily-rotate-file
 - yarn add zod `have "node module" incompatible issue`
