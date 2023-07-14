@@ -9,10 +9,12 @@
 - yarn add -D @types/express
 - yarn add -D @types/cors
 - yarn add -D ts-node-dev
+- yarn add @types/bcrypt
 - yarn add express
 - yarn add cors
 - yarn add mongoose
 - yarn add dotenv
+- yarn add bcrypt
 - yarn add winston `have "node module" incompatible issue`
 - yarn add winston-daily-rotate-file
 - yarn add zod `have "node module" incompatible issue`
