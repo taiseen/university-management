@@ -10,6 +10,7 @@
 - yarn add -D @types/cors
 - yarn add -D ts-node-dev
 - yarn add @types/bcrypt
+- yarn add @types/jsonwebtoken
 - yarn add express
 - yarn add cors
 - yarn add mongoose
@@ -20,6 +21,7 @@
 - yarn add zod `have "node module" incompatible issue`
 - yarn add http-status
 - yarn add bcrypt
+- yarn add jsonwebtoken
 
 <br />
 
