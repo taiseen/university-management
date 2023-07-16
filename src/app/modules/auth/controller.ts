@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { authService } from './service';
 import catchAsync from '../../../shared/catchAsync';
 import config from '../../../config';
+import httpStatus from 'http-status';
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
@@ -21,7 +22,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   res.cookie('refreshToken', refreshToken, cookieOptions);
 
   sendResponse<TLoginUserResponse>(res, {
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     success: true,
     message: 'User logged in successfully !',
     data: others,
