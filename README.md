@@ -11,6 +11,7 @@
 - yarn add -D ts-node-dev
 - yarn add @types/bcrypt
 - yarn add @types/jsonwebtoken
+- yarn add @types/cookie-parser
 - yarn add express
 - yarn add cors
 - yarn add mongoose
@@ -22,6 +23,7 @@
 - yarn add http-status
 - yarn add bcrypt
 - yarn add jsonwebtoken
+- yarn add cookie-parser
 
 <br />
 

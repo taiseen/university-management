@@ -1,4 +1,8 @@
-import { TLoginUser, TLoginUserResponse } from './interface';
+import {
+  TLoginUser,
+  TLoginUserResponse,
+  TRefreshTokenResponse,
+} from './interface';
 import { jwtHelpers } from '../../../utils/jwtHelpers';
 import { Secret } from 'jsonwebtoken';
 import { userModel } from '../user/model';
@@ -47,43 +51,43 @@ const loginUser = async (payload: TLoginUser): Promise<TLoginUserResponse> => {
   };
 };
 
-// const refreshToken = async (token: string): Promise<TRefreshTokenResponse> => {
-//   //verify token
-//   // invalid token - synchronous
-//   let verifiedToken = null;
-//   try {
-//     verifiedToken = jwtHelpers.verifyToken(
-//       token,
-//       config.jwt.refresh_secret as Secret
-//     );
-//   } catch (err) {
-//     throw new ApiError(httpStatus.FORBIDDEN, 'Invalid Refresh Token');
-//   }
+const refreshToken = async (token: string): Promise<TRefreshTokenResponse> => {
+  // verify token
+  // invalid token - synchronous
+  let verifiedToken = null;
 
-//   const { userId } = verifiedToken;
+  try {
+    verifiedToken = jwtHelpers.verifyToken(
+      token,
+      config.jwt.refreshSecret as Secret
+    );
+  } catch (err) {
+    throw new ApiError(httpStatus.FORBIDDEN, 'Invalid Refresh Token');
+  }
 
-//   // tumi delete hye gso  kintu tumar refresh token ase
-//   // checking deleted user's refresh token
+  const { userId } = verifiedToken;
 
-//   const isUserExist = await User.isUserExist(userId);
-//   if (!isUserExist) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
-//   }
-//   //generate new token
+  // assume you are deleted from DB, but your refresh token remain...
+  // 🔍🔍🔍 checking deleted user's refresh token
+  const isUserExist = await userModel.isUserExist(userId);
 
-//   const newAccessToken = jwtHelpers.createToken(
-//     {
-//       id: isUserExist.id,
-//       role: isUserExist.role,
-//     },
-//     config.jwt.secret as Secret,
-//     config.jwt.expires_in as string
-//   );
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist...');
+  }
 
-//   return {
-//     accessToken: newAccessToken,
-//   };
-// };
+  const { id, role } = isUserExist;
+
+  //generate new token
+  const newAccessToken = jwtHelpers.createToken(
+    { id, role },
+    config.jwt.secret as Secret, // JWT Secret Key
+    config.jwt.expiresIn as string // Expire Time
+  );
+
+  return {
+    accessToken: newAccessToken,
+  };
+};
 
 // const changePassword = async (
 //   user: JwtPayload | null,
@@ -135,6 +139,6 @@ const loginUser = async (payload: TLoginUser): Promise<TLoginUserResponse> => {
 
 export const authService = {
   loginUser,
-  //   refreshToken,
+  refreshToken,
   //   changePassword,
 };
