@@ -1,5 +1,5 @@
 import { sendResponse } from '../../../shared/sendResponse';
-import { TLoginUserResponse } from './interface';
+import { TLoginUserResponse, TRefreshTokenResponse } from './interface';
 import { Request, Response } from 'express';
 import { authService } from './service';
 import catchAsync from '../../../shared/catchAsync';
@@ -29,26 +29,26 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const refreshToken = catchAsync(async (req: Request, res: Response) => {
-//   const { refreshToken } = req.cookies;
+const refreshToken = catchAsync(async (req: Request, res: Response) => {
+  const { refreshToken } = req.cookies;
 
-//   const result = await AuthService.refreshToken(refreshToken);
+  const result = await authService.refreshToken(refreshToken);
 
-//   // set refresh token into cookie
-//   const cookieOptions = {
-//     secure: config.env === 'production',
-//     httpOnly: true,
-//   };
+  // set refresh token into cookie
+  const cookieOptions = {
+    secure: config.env === 'production',
+    httpOnly: true,
+  };
 
-//   res.cookie('refreshToken', refreshToken, cookieOptions);
+  res.cookie('refreshToken', refreshToken, cookieOptions);
 
-//   sendResponse<IRefreshTokenResponse>(res, {
-//     statusCode: 200,
-//     success: true,
-//     message: 'User logged in successfully !',
-//     data: result,
-//   });
-// });
+  sendResponse<TRefreshTokenResponse>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'User logged in successfully !',
+    data: result,
+  });
+});
 
 // const changePassword = catchAsync(async (req: Request, res: Response) => {
 //   const user = req.user;
@@ -65,6 +65,6 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 
 export const authController = {
   loginUser,
-  // refreshToken,
+  refreshToken,
   // changePassword,
 };

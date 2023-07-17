@@ -1,6 +1,7 @@
 import globalErrorHandler from './app/middleware/globalErrorHandler';
 import routeNotFound from './utils/routeNotFound';
 import express, { Application } from 'express';
+import cookieParser from 'cookie-parser';
 import welcome from './utils/welcome';
 import router from './app/routes';
 import cors from 'cors';
@@ -8,6 +9,7 @@ import cors from 'cors';
 const app: Application = express();
 
 app.use(cors()); // use cors
+app.use(cookieParser());
 app.use(express.json()); // parsing data...
 app.use(express.urlencoded({ extended: true }));
 
