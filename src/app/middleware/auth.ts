@@ -10,7 +10,6 @@ const auth =
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       //get authorization token
-
       const token = req.headers.authorization;
 
       if (!token) {
@@ -21,6 +20,7 @@ const auth =
       let verifiedUser = null;
 
       verifiedUser = jwtHelpers.verifyToken(token, config.jwt.secret as Secret);
+      console.log(verifiedUser);
 
       // ✅✅✅ create this "user" property & keep here "verifiedUser" values...
       req.user = verifiedUser; // role, userId
