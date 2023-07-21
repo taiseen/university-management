@@ -45,7 +45,7 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
   sendResponse<TRefreshTokenResponse>(res, {
     statusCode: 200,
     success: true,
-    message: 'User logged in successfully !',
+    message: 'Token refresh successful!',
     data: result,
   });
 });

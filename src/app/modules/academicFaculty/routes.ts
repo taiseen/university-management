@@ -15,12 +15,12 @@ const path = {
   allFaculty: '/',
 };
 
-const { SUPER_ADMIN, ADMIN, FACULTY, STUDENT } = ENUM_USER_ROLE;
+// const { SUPER_ADMIN, ADMIN, FACULTY, STUDENT } = ENUM_USER_ROLE;
 
 router.post(
   path.createFaculty,
   validationRequest(aF_Validation.create_AF_ZodSchema), // user input checking
-  auth(SUPER_ADMIN, ADMIN), // access permission
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN), // access permission
   aF_Controller.createFaculty
 );
 
@@ -29,13 +29,17 @@ router.post(
 router.patch(
   path.updateFaculty,
   validationRequest(aF_Validation.update_AF_ZodSchema),
-  auth(SUPER_ADMIN, ADMIN, FACULTY), // access permission
+  auth(
+    ENUM_USER_ROLE.SUPER_ADMIN,
+    ENUM_USER_ROLE.ADMIN,
+    ENUM_USER_ROLE.FACULTY
+  ), // access permission
   aF_Controller.updateFaculty
 );
 
 router.delete(
   path.deleteFaculty,
-  auth(SUPER_ADMIN, ADMIN), // access permission
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN), // access permission
   aF_Controller.deleteFaculty
 );
 
@@ -43,7 +47,12 @@ router.get(path.singleFaculty, aF_Controller.getSingleFaculty);
 
 router.get(
   path.allFaculty,
-  auth(SUPER_ADMIN, ADMIN, FACULTY, STUDENT), // access permission
+  auth(
+    ENUM_USER_ROLE.SUPER_ADMIN,
+    ENUM_USER_ROLE.ADMIN,
+    ENUM_USER_ROLE.FACULTY,
+    ENUM_USER_ROLE.STUDENT
+  ), // access permission
   aF_Controller.getAllFaculty
 );
 
