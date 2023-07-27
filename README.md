@@ -113,4 +113,5 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 
 - File & Folder Structure...
 - TypeScript Implementation...
-- user input verification by zod middleware
+- User input verification by zod middleware
+- User role base resource access
