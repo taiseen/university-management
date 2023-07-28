@@ -115,3 +115,4 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 - TypeScript Implementation...
 - User input verification by zod middleware
 - User role base resource access
+- Express Request type extend by index.d.ts
