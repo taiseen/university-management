@@ -117,3 +117,4 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 - User role base resource access
 - Express Request type extend by index.d.ts
 - HOC - Higher Order Function for async(req, res)
+- by function call pick object property
