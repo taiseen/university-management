@@ -118,3 +118,4 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 - Express Request type extend by index.d.ts
 - HOC - Higher Order Function for async(req, res)
 - by function call pick object property
+- global error handling...
