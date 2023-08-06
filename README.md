@@ -119,3 +119,4 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 - HOC - Higher Order Function for async(req, res)
 - by function call pick object property
 - global error handling...
+- CRUD Operation
