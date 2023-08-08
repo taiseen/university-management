@@ -112,6 +112,7 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 ## Learning Context:-
 
 - File & Folder Structure...
+- Eslint Configuration
 - TypeScript Implementation...
 - User input verification by zod middleware
 - User role base resource access
